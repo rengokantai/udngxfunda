@@ -36,3 +36,44 @@ If updating,run
 ```
 service nginx reload
 ```
+#####2
+######virtual host
+```
+events{}
+http{
+include mime.types;     #types{text/html html; text/css css;}
+server{
+  listen 80;
+  server_name 12.23.23.21;
+  root /site/root;
+  error_log /var/log/nginx/error.log debug;      # or access_log off; error_log off;
+  location /param {    # /param  /parammmm   /param/2
+    return 200 'string';
+  }
+  location = /param {    # /param
+    return 200 'string';
+  }
+  location ~ /param[0-9] {    # /param3      /greet is not working.
+    return 200 'string';
+  }
+  location ^~ /param {    # /param  prefix preference
+    return 200 'string';
+  }
+  location /down {
+    root /site;
+    try_files $uri =404;
+  }
+}
+}
+```
+######backend comm
+```
+apt-get install php5-fpm php5 php5-cgi php5-mysql
+```
+######other useful directives
+check no of cpu:
+```
+nproc
+lscpu
+ulimit -n  //get connection
+```
