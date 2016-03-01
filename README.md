@@ -77,3 +77,23 @@ nproc
 lscpu
 ulimit -n  //get connection
 ```
+
+#####3
+######Gzip
+```
+curl -I -H 'Accept-Encoding:gzip,deflate' http://.......
+```
+
+```
+gzip on;
+gzip_min_length 100;  only gzip file larger than 100 bytes default 20byte.
+gzip_comp_level 3;  zip level
+gzip_types text/plain text/css text/javascript;
+
+gzip_disable "msie6"
+```
+######fast_cgi
+benchtest
+```
+ab -n 100 -c 10 http://12.12.12.12/...
+```
