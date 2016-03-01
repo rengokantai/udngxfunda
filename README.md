@@ -97,3 +97,26 @@ benchtest
 ```
 ab -n 100 -c 10 http://12.12.12.12/...
 ```
+#####4
+######auth
+```
+sudo htpasswd -c /etc/nginx/htpasswd newuser  //and set password
+```
+
+add
+```
+auth_basic "welcome"
+auth_basic_user_file /etc/nginx/htpasswd
+```
+######harden
+hide version
+```
+server_tokens off;
+```
+restrict access
+```
+curl -I -A "Bad" 12.12.12.12
+```
+prevent:
+```
+if($http_user_agent ~* bad){return 403;}
